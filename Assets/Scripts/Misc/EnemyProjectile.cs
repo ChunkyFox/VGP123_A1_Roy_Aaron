@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     public float speed;
     public float lifetime;
@@ -22,13 +22,13 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<EnemyWalker>().IsDead();
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Pickup")
+        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Pickup")
         {
             Destroy(gameObject);
         }
