@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (marioSprite.flipX && horizontalInput > 0 || !marioSprite.flipX && horizontalInput < 0)
             marioSprite.flipX = !marioSprite.flipX;
 
+
     }
 
     public void StartSpeedChange()
@@ -113,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * bounceForce);
             }
+        }
+        if(collision.gameObject.tag == "death")
+        {
+            lives--;
         }
     }
 }

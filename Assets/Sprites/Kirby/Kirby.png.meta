@@ -44,6 +44,9 @@ TextureImporter:
   - first:
       213: 4452624540722295988
     second: ThrowingStar
+  - first:
+      213: 5338362016888644492
+    second: UFO_Kirby
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -138,7 +141,7 @@ TextureImporter:
         serializedVersion: 2
         x: 6
         y: 3027
-        width: 17
+        width: 16
         height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -414,7 +417,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -422,6 +425,27 @@ TextureImporter:
       bones: []
       spriteID: 4b470f3cd66eacd30800000000000000
       internalID: 4452624540722295988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UFO_Kirby
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 2542
+        width: 22
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83e51378fba51a40800000000000000
+      internalID: 5338362016888644492
       vertices: []
       indices: 
       edges: []

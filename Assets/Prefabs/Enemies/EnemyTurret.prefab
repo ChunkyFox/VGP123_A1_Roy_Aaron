@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1195801977}
   m_Layer: 0
   m_Name: EnemyTurret
-  m_TagString: Enemy
+  m_TagString: death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,12 +198,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPointLeft: {fileID: 7743891503718826134}
   spawnPointRight: {fileID: 7743891503079444563}
-  projectilePrefab: {fileID: 0}
+  enemyProjectilePrefab: {fileID: 0}
   projectileForce: 0
   projectileFireRate: 7
+  turretFireDistance: 10
   health: 5
-  range: 6
-  target: {fileID: 0}
 --- !u!1 &7743891503718826135
 GameObject:
   m_ObjectHideFlags: 0

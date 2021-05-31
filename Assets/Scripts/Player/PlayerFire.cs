@@ -10,7 +10,7 @@ public class PlayerFire : MonoBehaviour
 
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
-
+    
     public float projectileSpeed;
     public Projectile projectilePrefab;
 

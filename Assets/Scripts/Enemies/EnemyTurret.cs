@@ -12,21 +12,19 @@ public class EnemyTurret : MonoBehaviour
 
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
-    public Projectile projectilePrefab;
+    public Projectile enemyProjectilePrefab;
 
     public float projectileForce;
 
     public float projectileFireRate;
-
+    public float turretFireDistance;
     float timeSinceLastFire = 0.0f;
+    bool canFire;
     public int health;
 
-    public float range;
-    public Transform target;
-    //bool Detected = false;
+    GameObject player;
 
-
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -57,55 +55,62 @@ public class EnemyTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.sr.flipX = target.transform.position.x > this.transform.position.x;
-     
-        if (Vector2.Distance(transform.position, target.position) < range)
-        {
+
+        if (player)
+        {   
+            if (player.transform.position.x < transform.position.x)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+           
+            if (distance <= turretFireDistance)
+            {
+                canFire = true;
+            }
+            else
+            {
+                canFire = false;
+            }
+
             //HINT 1 FOR LAB: CHECK SOMETHING PRIOR TO FIRING TO DETERMING WHICH DIRECTION TO FIRE - CAN ALSO INCLUDE DISTANCE
             if (Time.time >= timeSinceLastFire + projectileFireRate)
             {
+                if (canFire)
+                {
+                    anim.SetBool("Fire", true);
+                    timeSinceLastFire = Time.time;
+                }
 
-                anim.SetBool("Fire", true);
-                timeSinceLastFire = Time.time;
             }
         }
         else
         {
-            ReturnToIdle();
+           if (GameManager.instance.playerInstance)
+              player = GameManager.instance.playerInstance;
         }
 
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, range);
-
-    }
-
-
-
-
-
 
     public void Fire()
     {
         //HINT 2 FOR LAB: IF YOU KNOW THE DIRECTION - YOU CAN ADD LOGIC HERE TO FIRE IN THAT DIRECTION
-       /* Projectile temp = Instantiate(projectilePrefab, SpawnPointLeft.position, SpawnPointLeft.rotation);
-        temp.speed = -projectileForce;*/
-
-        if (!sr.flipX)
+       
+        if (sr.flipX)
         {
-            Projectile projectileInstance = Instantiate(projectilePrefab, spawnPointLeft.position, spawnPointLeft.rotation);
-            projectileInstance.speed = -projectileForce;
+          Projectile temp = Instantiate(enemyProjectilePrefab, spawnPointLeft.position, spawnPointLeft.rotation);
+          temp.speed = -projectileForce;
         }
         else
         {
-            Projectile projectileInstance = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
-            projectileInstance.speed = projectileForce;
+            Projectile temp = Instantiate(enemyProjectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+            temp.speed = projectileForce;
         }
-
-
-
     }
 
     public void ReturnToIdle()
@@ -115,7 +120,7 @@ public class EnemyTurret : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "PlayerProjectile")
         {
             health--;
             Destroy(collision.gameObject);

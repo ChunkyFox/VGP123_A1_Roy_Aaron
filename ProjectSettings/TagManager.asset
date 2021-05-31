@@ -11,6 +11,7 @@ TagManager:
   - Barrier
   - PlayerPRojectile
   - EnemeyProjectile
+  - death
   layers:
   - Default
   - TransparentFX
