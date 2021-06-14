@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Objective : MonoBehaviour
+public class Spawn : MonoBehaviour
 {
-
     public GameObject[] spawnedObject;
 
     // Start is called before the first frame update
@@ -17,15 +16,5 @@ public class Objective : MonoBehaviour
     void Update()
     {
 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Objective Met");
-
-            //end game logic goes here
-        }
     }
 }

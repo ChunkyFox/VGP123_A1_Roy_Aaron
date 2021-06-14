@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa069619d8e8c8489c80d445b8d6654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCollectible: 0
+  currentCollectible: 1
+  pickupAudioClip: {fileID: 0}

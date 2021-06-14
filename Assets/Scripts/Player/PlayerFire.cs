@@ -10,7 +10,7 @@ public class PlayerFire : MonoBehaviour
 
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
-    
+
     public float projectileSpeed;
     public Projectile projectilePrefab;
 
@@ -30,9 +30,12 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Time.timeScale == 1)
         {
-            anim.SetBool("isShooting", true);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetBool("isShooting", true);
+            }
         }
     }
 
@@ -48,6 +51,7 @@ public class PlayerFire : MonoBehaviour
             Projectile projectileInstance = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
             projectileInstance.speed = projectileSpeed;
         }
+        //Debug.LogError("Projectile Spawned");
     }
 
     void ResetFire()

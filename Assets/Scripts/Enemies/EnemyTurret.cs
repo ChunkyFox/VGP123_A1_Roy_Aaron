@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(SpriteRenderer),typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class EnemyTurret : MonoBehaviour
 {
-    Rigidbody2D rb;
-    SpriteRenderer sr;
-    Animator anim;
-
-
-    public Transform spawnPointLeft;
-    public Transform spawnPointRight;
-    public Projectile enemyProjectilePrefab;
+    public Transform projectileSpawnPointRight;
+    public Transform projectileSpawnPointLeft;
+    public Projectile projectilePrefab;
 
     public float projectileForce;
 
@@ -22,17 +17,16 @@ public class EnemyTurret : MonoBehaviour
     bool canFire;
     public int health;
 
+    Animator anim;
+    SpriteRenderer sr;
+
     GameObject player;
 
-  
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-
-        
 
 
         if (projectileForce <= 0)
@@ -55,9 +49,8 @@ public class EnemyTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (player)
-        {   
+        {
             if (player.transform.position.x < transform.position.x)
             {
                 sr.flipX = true;
@@ -68,17 +61,12 @@ public class EnemyTurret : MonoBehaviour
             }
 
             float distance = Vector2.Distance(transform.position, player.transform.position);
-           
-            if (distance <= turretFireDistance)
-            {
-                canFire = true;
-            }
-            else
-            {
-                canFire = false;
-            }
 
-            //HINT 1 FOR LAB: CHECK SOMETHING PRIOR TO FIRING TO DETERMING WHICH DIRECTION TO FIRE - CAN ALSO INCLUDE DISTANCE
+            if (distance <= turretFireDistance)
+                canFire = true;
+            else
+                canFire = false;
+
             if (Time.time >= timeSinceLastFire + projectileFireRate)
             {
                 if (canFire)
@@ -86,29 +74,25 @@ public class EnemyTurret : MonoBehaviour
                     anim.SetBool("Fire", true);
                     timeSinceLastFire = Time.time;
                 }
-
             }
         }
         else
         {
-           if (GameManager.instance.playerInstance)
-              player = GameManager.instance.playerInstance;
+            if (GameManager.instance.playerInstance)
+                player = GameManager.instance.playerInstance;
         }
-
     }
 
     public void Fire()
     {
-        //HINT 2 FOR LAB: IF YOU KNOW THE DIRECTION - YOU CAN ADD LOGIC HERE TO FIRE IN THAT DIRECTION
-       
         if (sr.flipX)
         {
-          Projectile temp = Instantiate(enemyProjectilePrefab, spawnPointLeft.position, spawnPointLeft.rotation);
-          temp.speed = -projectileForce;
+            Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointLeft.position, projectileSpawnPointLeft.rotation);
+            temp.speed = -projectileForce;
         }
         else
         {
-            Projectile temp = Instantiate(enemyProjectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+            Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointRight.position, projectileSpawnPointRight.rotation);
             temp.speed = projectileForce;
         }
     }
