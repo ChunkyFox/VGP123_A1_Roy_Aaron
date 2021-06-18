@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Animator))]
 public class EnemyTurret : MonoBehaviour
@@ -17,9 +18,14 @@ public class EnemyTurret : MonoBehaviour
     bool canFire;
     public int health;
 
+    public AudioClip hitSFX;
+    public AudioMixerGroup audioMixer;
+    AudioSource hitAudioSource;
+
+
     Animator anim;
     SpriteRenderer sr;
-
+    Rigidbody2D rb;
     GameObject player;
 
     // Start is called before the first frame update
@@ -53,11 +59,11 @@ public class EnemyTurret : MonoBehaviour
         {
             if (player.transform.position.x < transform.position.x)
             {
-                sr.flipX = true;
+                sr.flipX = false;
             }
             else
             {
-                sr.flipX = false;
+                sr.flipX = true;
             }
 
             float distance = Vector2.Distance(transform.position, player.transform.position);
@@ -88,18 +94,41 @@ public class EnemyTurret : MonoBehaviour
         if (sr.flipX)
         {
             Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointLeft.position, projectileSpawnPointLeft.rotation);
-            temp.speed = -projectileForce;
+            temp.speed = projectileForce;
         }
         else
         {
             Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointRight.position, projectileSpawnPointRight.rotation);
-            temp.speed = projectileForce;
+            temp.speed = -projectileForce;
         }
     }
 
     public void ReturnToIdle()
     {
         anim.SetBool("Fire", false);
+    }
+
+    public void IsDead()
+    {
+        health--;
+        if (!hitAudioSource)
+        {
+            hitAudioSource = gameObject.AddComponent<AudioSource>();
+            hitAudioSource.clip = hitSFX;
+            hitAudioSource.outputAudioMixerGroup = audioMixer;
+            hitAudioSource.loop = false;
+        }
+        hitAudioSource.Play();
+        if (health <= 0)
+        {
+            anim.SetBool("Death", true);
+            
+           
+        }
+    }
+    public void FinishedDeath()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -501,8 +501,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 2054817063}
   m_HandleRect: {fileID: 1097378125}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 1
   m_Value: 20
   m_OnValueChanged:
@@ -1286,9 +1286,10 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   livesText: {fileID: 0}
   volSliderText: {fileID: 1533715083}
-  volSlider: {fileID: 0}
+  volSlider: {fileID: 387837933}
   pauseSound: {fileID: 0}
   soundFXMixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 5710850d8a42a7946ba0987a0c6c7dbe, type: 2}
 --- !u!114 &1350216505
 MonoBehaviour:
   m_ObjectHideFlags: 0

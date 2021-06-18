@@ -29,6 +29,15 @@ public class Projectile : MonoBehaviour
                 walker.IsDead();
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyTurret turret = collision.gameObject.GetComponent<EnemyTurret>();
+            if (turret)
+                turret.IsDead();
+            Destroy(gameObject);
+        }
+       
+
 
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Pickup")
         {

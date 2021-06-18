@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Animator anim;
     SpriteRenderer marioSprite;
     AudioSource pickupAudioSource;
+    AudioSource hitAudioSource;
     AudioSource jumpAudioSource;
 
     public float speed;
@@ -21,10 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
 
+    public AudioClip hitSFX;
     public AudioClip jumpSFX;
     public AudioMixerGroup audioMixer;
 
     bool coroutineRunning = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -136,5 +139,7 @@ public class PlayerMovement : MonoBehaviour
         pickupAudioSource.clip = pickupAudio;
         pickupAudioSource.Play();
     }
+
+  
 }
 

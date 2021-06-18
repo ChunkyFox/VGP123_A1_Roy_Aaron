@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Audio;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 public class EnemyWalker : MonoBehaviour
 {
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+
+    public AudioClip hitSFX;
+    public AudioMixerGroup audioMixer;
+    AudioSource hitAudioSource;
 
     public int health;
     public float speed;
@@ -52,12 +56,21 @@ public class EnemyWalker : MonoBehaviour
         if (collision.gameObject.tag == "Barrier")
         {
             sr.flipX = !sr.flipX;
+            //Debug.Log("collied with barrier");
         }
     }
 
     public void IsDead()
     {
         health--;
+        if (!hitAudioSource)
+        {
+            hitAudioSource = gameObject.AddComponent<AudioSource>();
+            hitAudioSource.clip = hitSFX;
+            hitAudioSource.outputAudioMixerGroup = audioMixer;
+            hitAudioSource.loop = false;
+        }
+        hitAudioSource.Play();
         if (health <= 0)
         {
             anim.SetBool("Death", true);

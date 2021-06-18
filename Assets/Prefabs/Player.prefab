@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3125214635029192231}
   - component: {fileID: 3125214635029192230}
   - component: {fileID: 3125214635029192235}
-  - component: {fileID: 3125214635029192234}
   - component: {fileID: 3125214635029192232}
+  - component: {fileID: 5058037746029707159}
+  - component: {fileID: 3125214635029192234}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -158,8 +159,41 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 3125214636384794201}
   groundCheckRadius: 0.2
-  jumpSFX: {fileID: 0}
+  hitSFX: {fileID: 8300000, guid: 3ccdb66e2d977984daee964ea5ae73f7, type: 3}
+  jumpSFX: {fileID: 8300000, guid: a3f39ccd4630c8f4d946665ca5ce3be1, type: 3}
+  audioMixer: {fileID: -5902223138698838079, guid: 5710850d8a42a7946ba0987a0c6c7dbe, type: 2}
+--- !u!114 &3125214635029192232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125214635029192224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0625a04c3ad87488831b53936e1ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointLeft: {fileID: 3687509293502316976}
+  spawnPointRight: {fileID: 5272370900495281892}
+  shootSFX: {fileID: 8300000, guid: 472a07d8239123e4db85d5c3f29c6166, type: 3}
   audioMixer: {fileID: 0}
+  projectileSpeed: 5
+  projectilePrefab: {fileID: 8476339719857750779, guid: a2e0793dd333bbf4f9280ae044e85737, type: 3}
+--- !u!114 &5058037746029707159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125214635029192224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80222beb88fab80489a54bed79a1dc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSFX: {fileID: 8300000, guid: 3ccdb66e2d977984daee964ea5ae73f7, type: 3}
+  audioMixer: {fileID: -5902223138698838079, guid: 5710850d8a42a7946ba0987a0c6c7dbe, type: 2}
 --- !u!95 &3125214635029192234
 Animator:
   serializedVersion: 3
@@ -179,22 +213,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3125214635029192232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3125214635029192224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba0625a04c3ad87488831b53936e1ab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPointLeft: {fileID: 3687509293502316976}
-  spawnPointRight: {fileID: 5272370900495281892}
-  projectileSpeed: 5
-  projectilePrefab: {fileID: 8476339719857750779, guid: a2e0793dd333bbf4f9280ae044e85737, type: 3}
 --- !u!1 &3125214636384794202
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
-            Debug.Log("Current Score Is: " + _score);
+            //Debug.Log("Current Score Is: " + _score);
         }
     }
 
@@ -49,16 +49,16 @@ public class GameManager : MonoBehaviour
                 _lives = maxLives;
             }
 
-            if (_lives < 0)
+            if (_lives <= 0)
             {
-                SceneManager.LoadScene("EndGame");
+                SceneManager.LoadScene("GameOver");
             }
 
-            Debug.Log("Current Lives Are: " + _lives);
+           // Debug.Log("Current Lives Are: " + _lives);
             currentCanvas.SetLivesText();
         }
     }
-
+    public CanvasManager canvasManager;
     public GameObject playerInstance;
     public GameObject playerPrefab;
     public LevelManager currentLevel;
@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
-        currentCanvas = FindObjectOfType<CanvasManager>();
+        //currentCanvas = FindObjectOfType<CanvasManager>();
+       
     }
 
     // Update is called once per frame
@@ -115,6 +116,10 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
+   
+
+
+
     public void SpawnPlayer(Transform spawnLocation)
     {
         CameraFollow mainCamera = FindObjectOfType<CameraFollow>();
@@ -138,10 +143,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
+        canvasManager = FindObjectOfType<CanvasManager>();
     }
 
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("TitleScreen");
+        
     }
 }

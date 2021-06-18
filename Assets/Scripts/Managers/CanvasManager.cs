@@ -29,6 +29,7 @@ public class CanvasManager : MonoBehaviour
     [Header("Audio")]
     public AudioClip pauseSound;
     public AudioMixerGroup soundFXMixer;
+    public AudioMixer mixer;
     AudioSource pauseSoundAudio;
 
     // Start is called before the first frame update
@@ -133,6 +134,7 @@ public class CanvasManager : MonoBehaviour
             if (settingsMenu.activeSelf)
             {
                 volSliderText.text = volSlider.value.ToString();
+                mixer.SetFloat("MasterVol", volSlider.value);
             }
         }
     }

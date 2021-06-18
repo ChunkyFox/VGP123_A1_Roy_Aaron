@@ -9,9 +9,9 @@ TagManager:
   - Enemy
   - Squish
   - Barrier
-  - PlayerPRojectile
-  - EnemeyProjectile
   - death
+  - EnemyProjectile
+  - Victory
   layers:
   - Default
   - TransparentFX
